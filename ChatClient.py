@@ -1,12 +1,21 @@
 import socket
 import concurrent.futures as pool
 import sys
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad, unpad
+
+key = b'Insert Key Here'
+
+cipher = AES.new(key, AES.MODE_ECB)
+d_cipher = AES.new(key, AES.MODE_ECB)
 
 def receive_message(conn):
     while True:
         try:
-            msg = conn.recv(2048).decode('utf-8')
-            print(msg)
+            msg = conn.recv(2048)
+            de_msg = unpad(d_cipher.decrypt(msg), AES.block_size)
+            f = de_msg.decode('utf-8')
+            print(f)
         except:
             print("Server down")
             sys.exit()
@@ -26,6 +35,7 @@ server.send(name.encode('utf-8'))
 executor.submit(receive_message, server)
 
 while True:
-    msg = input('')
-    server.send(msg.encode('utf-8'))
+    msg = bytes(input(''), 'utf-8')
+    enc_msg = cipher.encrypt(pad(msg, AES.block_size))
+    server.send(enc_msg)
 

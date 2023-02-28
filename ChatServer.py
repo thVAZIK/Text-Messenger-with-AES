@@ -14,7 +14,7 @@ def clientThread(client, host):
     
     while True:
         try:
-            msg = client.recv(2048).decode('utf-8')
+            msg = client.recv(2048)
             msg = f"<{name}> {msg}"
             
             print(msg)
