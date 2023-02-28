@@ -4,6 +4,7 @@ import sys
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
 
+# There must be exactly 16 characters in the key
 key = b'Insert Key Here'
 
 cipher = AES.new(key, AES.MODE_ECB)
