@@ -6,10 +6,6 @@ This is a small fork of the [text messenger](https://github.com/DvorakDwarf/Text
 # Requirements:
 - pycryptodome
 
-# Not working at the moment
-PROBLEMS:
-- Inoperable client part
-
 
 ## Credits
 - [DvorakDwarf](https://github.com/DvorakDwarf)
