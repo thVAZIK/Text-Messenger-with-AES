@@ -36,7 +36,8 @@ server.send(name.encode('utf-8'))
 executor.submit(receive_message, server)
 
 while True:
-    msg = bytes(input(''), 'utf-8')
-    enc_msg = cipher.encrypt(pad(msg, AES.block_size))
+    msg = input('')
+    msg_w_name = bytes(f'<{name}> {msg}', 'utf-8')
+    enc_msg = cipher.encrypt(pad(msg_w_name, AES.block_size))
     server.send(enc_msg)
 

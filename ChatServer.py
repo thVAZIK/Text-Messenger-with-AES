@@ -8,14 +8,14 @@ host_ip = "Insert IP here"
 def clientThread(client, host):
     name = client.recv(1024).decode('utf-8')
     print(f"{name} connected")
-    broadcast_all(f"{name} connected".encode('utf-8'))
+    # broadcast_all(f"{name} connected".encode('utf-8'))
     
     # client.send("Welcome to the chat".encode('utf-8'))
     
     while True:
         try:
             msg = client.recv(2048)
-            msg = f"<{name}> {msg}"
+            # msg = f"<{name}> {msg}"
             
             print(msg)
             broadcast(msg, client)
